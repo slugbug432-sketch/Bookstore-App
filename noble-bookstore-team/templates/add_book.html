@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>➕ Add New Book</h2>
+
+    <form method="POST" action="{{ url_for('add_book') }}">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+
+            <input
+                type="text"
+                name="title"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Author</label>
+
+            <input
+                type="text"
+                name="author"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">ISBN</label>
+
+            <input
+                type="text"
+                name="isbn"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price ($)</label>
+
+            <input
+                type="number"
+                name="price"
+                step="0.01"
+                min="0"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Quantity</label>
+
+            <input
+                type="number"
+                name="quantity"
+                min="0"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-success"
+        >
+            Add Book
+        </button>
+
+        <a
+            href="{{ url_for('books') }}"
+            class="btn btn-secondary"
+        >
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+{% endblock %}
