@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Barcode for {{ book.title }}</h2>
+    <p>ISBN: {{ book.isbn }}</p>
+    <p>Barcode Data: {{ barcode_data }}</p>
+    <!-- In production, you would render an actual barcode image here -->
+</div>
+{% endblock %}

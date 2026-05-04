@@ -1,0 +1,128 @@
+:root {
+    --bg: #0f172a;
+    --card: #111827;
+    --border: #1f2937;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --primary: #4f46e5;
+}
+
+/* GLOBAL */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* LINKS */
+a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+/* CONTAINER */
+.container {
+    padding: 20px;
+}
+
+/* CARD (MAIN UI COMPONENT) */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--text);
+    padding: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* NAVBAR / SIDEBAR LINKS */
+.nav-link {
+    color: var(--text);
+    padding: 10px;
+    border-radius: 8px;
+    display: block;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* TABLES */
+.table {
+    color: var(--text);
+}
+
+.table thead th {
+    background: #1f2937;
+    color: white;
+    border: none;
+}
+
+.table tbody tr {
+    border-color: var(--border);
+}
+
+.table-hover tbody tr:hover {
+    background: #1f2937;
+}
+
+/* BUTTONS */
+.btn {
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border: none;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+/* ALERTS */
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+/* FORMS */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #0b1220;
+    color: var(--text);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* KPI TEXT */
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* SMALL TEXT */
+.text-muted {
+    color: var(--muted) !important;
+}

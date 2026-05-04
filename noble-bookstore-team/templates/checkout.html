@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Checkout</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+
+            <label>Select Book</label>
+
+            <select
+                name="book_id"
+                class="form-control"
+                required
+            >
+
+                {% for book in books %}
+
+                <option value="{{ book.id }}">
+
+                    {{ book.title }} - ${{ "%.2f"|format(book.price) }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                name="quantity"
+                min="1"
+                value="1"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+
+            Complete Sale
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
