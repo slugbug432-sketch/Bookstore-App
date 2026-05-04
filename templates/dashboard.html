@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="admin-hero">
+    <h1>Noble Bookstore Admin</h1>
+    <p>Manage books, photos, condition, prices, and inventory.</p>
+</section>
+
+<div class="admin-actions">
+    <a href="{{ url_for('add_book') }}" class="admin-btn">+ Add New Book</a>
+    <a href="{{ url_for('books') }}" class="admin-btn light">View Storefront</a>
+</div>
+
+<div class="admin-book-grid">
+    {% for book in books %}
+    <div class="admin-book-card">
+        <img src="{{ url_for('static', filename='images/' + book['image']) }}" alt="{{ book['title'] }}">
+
+        <div class="admin-book-info">
+            <h3>{{ book['title'] }}</h3>
+            <p>by {{ book['author'] }}</p>
+            <p><strong>Condition:</strong> {{ book['condition'] }}</p>
+            <p><strong>Price:</strong> ${{ "%.2f"|format(book['price']) }}</p>
+            <p><strong>Quantity:</strong> {{ book['quantity'] }}</p>
+
+            <div class="admin-card-buttons">
+                <a href="/edit_book/{{ book['id'] }}" class="edit-btn">Edit</a>
+                <a href="/delete_book/{{ book['id'] }}" class="delete-btn">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

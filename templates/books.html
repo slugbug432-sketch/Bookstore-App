@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="store-hero">
+    <div class="hero-overlay">
+        <h1>Discover Your Next Great Read</h1>
+        <p>Browse books and click to view photos, condition, and details.</p>
+        <a href="#collection" class="hero-btn">Browse Collection</a>
+    </div>
+</section>
+
+<section id="collection" class="collection-section">
+    <h2>Our Collection</h2>
+    <p>Handpicked books for every reader</p>
+
+    {% if session.get('role') == 'admin' %}
+    <div class="admin-actions">
+        <a href="{{ url_for('add_book') }}" class="admin-btn">+ Add New Book</a>
+    </div>
+    {% endif %}
+
+    <div class="books-grid">
+        {% for book in books %}
+        <div class="book-card">
+
+            <a href="{{ url_for('book_detail', book_id=book['id']) }}" class="book-card-link">
+                <div class="book-cover-area">
+                    <img src="{{ url_for('static', filename='images/' + book['image']) }}" alt="{{ book['title'] }}">
+                </div>
+
+                <div class="book-content">
+                    <h3>{{ book['title'] }}</h3>
+                    <p class="author">by {{ book['author'] }}</p>
+                    <p class="condition">Condition: {{ book['condition'] }}</p>
+                    <p class="price">${{ "%.2f"|format(book['price']) }}</p>
+                    <span class="view-btn">View Book</span>
+                </div>
+            </a>
+
+            {% if session.get('role') == 'admin' %}
+            <div class="admin-card-buttons">
+                <a href="{{ url_for('edit_book', book_id=book['id']) }}" class="edit-btn">Edit</a>
+                <a href="{{ url_for('delete_book', book_id=book['id']) }}" class="delete-btn">Delete</a>
+            </div>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

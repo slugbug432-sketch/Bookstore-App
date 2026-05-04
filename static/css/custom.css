@@ -1,0 +1,129 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f7efe4;
+    color: #2b160d;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    background: linear-gradient(90deg, #9b430c, #d76b18);
+    padding: 20px;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* HERO */
+.store-hero {
+    min-height: 400px;
+    background:
+        linear-gradient(rgba(83, 35, 7, 0.75), rgba(83, 35, 7, 0.75)),
+        url("/static/images/bookstore-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    text-align: center;
+    color: white;
+}
+
+.hero-overlay h1 {
+    font-size: 3.5rem;
+}
+
+.hero-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: #f2a65a;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #2b160d;
+}
+
+/* COLLECTION */
+.collection-section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* CARD */
+.book-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #2b160d;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* FIXED CLASS NAME */
+.book-cover-area {
+    height: 220px;
+    background: linear-gradient(135deg, #9b440d, #d96b18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-cover-area img {
+    max-height: 180px;
+}
+
+/* FIXED CLASS NAME */
+.book-content {
+    padding: 20px;
+}
+
+.book-content h3 {
+    font-size: 1.4rem;
+}
+
+.author {
+    color: #d96b18;
+    font-weight: bold;
+}
+
+.condition {
+    margin-top: 8px;
+}
+
+.price {
+    margin-top: 12px;
+    font-size: 1.5rem;
+    color: #9b430c;
+    font-weight: bold;
+}
+
+.view-btn {
+    display: block;
+    margin-top: 15px;
+    background: #9b430c;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+}
