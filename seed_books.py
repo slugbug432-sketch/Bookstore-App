@@ -19,7 +19,7 @@ books = [
 
 for book in books:
     cursor.execute("""
-        INSERT OR IGNOREINTO books
+        INSERT OR IGNORE INTO books
         (title, author, isbn, quantity, price, image, condition, description)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     """, book)
