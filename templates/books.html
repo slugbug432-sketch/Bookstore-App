@@ -2,52 +2,269 @@
 
 {% block content %}
 
+<!-- HERO -->
 <section class="store-hero">
     <div class="hero-overlay">
+
         <h1>Discover Your Next Great Read</h1>
-        <p>Browse books and click to view photos, condition, and details.</p>
-        <a href="#collection" class="hero-btn">Browse Collection</a>
+
+        <p>
+            Browse rare editions, timeless classics,
+            and collectible books from Noble Bookstore.
+        </p>
+
+        <a href="#collection" class="hero-btn">
+            Browse Collection
+        </a>
+
     </div>
 </section>
 
+<!-- COLLECTION -->
 <section id="collection" class="collection-section">
-    <h2>Our Collection</h2>
-    <p>Handpicked books for every reader</p>
 
+    <h2>Our Collection</h2>
+
+    <p>
+        Handpicked books for every reader
+    </p>
+
+    <!-- SEARCH -->
+    <form method="GET"
+          action="{{ url_for('books') }}"
+          class="search-bar">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by title, author, or ISBN..."
+            value="{{ search or '' }}"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+        {% if search %}
+        <a href="{{ url_for('books') }}"
+           class="clear-search">
+            Clear
+        </a>
+        {% endif %}
+
+    </form>
+
+    <!-- ADMIN BUTTON -->
     {% if session.get('role') == 'admin' %}
     <div class="admin-actions">
-        <a href="{{ url_for('add_book') }}" class="admin-btn">+ Add New Book</a>
+
+        <a href="{{ url_for('add_book') }}"
+           class="admin-btn">
+            + Add New Book
+        </a>
+
     </div>
     {% endif %}
 
+    <!-- BOOK GRID -->
     <div class="books-grid">
+
         {% for book in books %}
         <div class="book-card">
 
-            <a href="{{ url_for('book_detail', book_id=book['id']) }}" class="book-card-link">
+            <!-- CLICKABLE CARD -->
+            <a href="{{ url_for('book_detail', book_id=book['id']) }}"
+               class="book-card-link">
+
                 <div class="book-cover-area">
-                    <img src="{{ url_for('static', filename='images/' + book['image']) }}" alt="{{ book['title'] }}">
+
+                    <img
+                        src="{{ url_for('static', filename='images/' + book['image']) }}"
+                        alt="{{ book['title'] }}"
+                    >
+
                 </div>
 
                 <div class="book-content">
+
                     <h3>{{ book['title'] }}</h3>
-                    <p class="author">by {{ book['author'] }}</p>
-                    <p class="condition">Condition: {{ book['condition'] }}</p>
-                    <p class="price">${{ "%.2f"|format(book['price']) }}</p>
-                    <span class="view-btn">View Book</span>
+
+                    <p class="author">
+                        by {{ book['author'] }}
+                    </p>
+
+                    <p class="condition">
+                        Condition: {{ book['condition'] }}
+                    </p>
+
+                    <p class="price">
+                        ${{ "%.2f"|format(book['price']) }}
+                    </p>
+
                 </div>
+
             </a>
 
+            <!-- ACTION BUTTONS -->
+            <div class="book-actions">
+
+                <a href="{{ url_for('book_detail', book_id=book['id']) }}"
+                   class="detail-btn">
+                    View Details
+                </a>
+
+                <a href="{{ url_for('add_to_cart', book_id=book['id']) }}"
+                   class="view-btn">
+                    Add to Cart
+                </a>
+
+            </div>
+
+            <!-- ADMIN CONTROLS -->
             {% if session.get('role') == 'admin' %}
             <div class="admin-card-buttons">
-                <a href="{{ url_for('edit_book', book_id=book['id']) }}" class="edit-btn">Edit</a>
-                <a href="{{ url_for('delete_book', book_id=book['id']) }}" class="delete-btn">Delete</a>
+
+                <a href="{{ url_for('edit_book', book_id=book['id']) }}"
+                   class="edit-btn">
+                    Edit
+                </a>
+
+                <a href="{{ url_for('delete_book', book_id=book['id']) }}"
+                   class="delete-btn">
+                    Delete
+                </a>
+
             </div>
             {% endif %}
 
         </div>
         {% endfor %}
+
     </div>
+
 </section>
+
+<!-- SIMPLE FEATURES -->
+<section class="features-simple">
+
+    <div class="feature-simple-box">
+
+        <div class="feature-icon">
+            🚚
+        </div>
+
+        <h3>Free Shipping</h3>
+
+        <p>
+            Free delivery on orders over $50.
+            Fast and reliable shipping worldwide.
+        </p>
+
+    </div>
+
+    <div class="feature-simple-box">
+
+        <div class="feature-icon">
+            ↩
+        </div>
+
+        <h3>Easy Returns</h3>
+
+        <p>
+            Not satisfied? Return any book within
+            30 days for a full refund.
+        </p>
+
+    </div>
+
+    <div class="feature-simple-box">
+
+        <div class="feature-icon">
+            🎧
+        </div>
+
+        <h3>Expert Support</h3>
+
+        <p>
+            Our book experts are here to help
+            you find your perfect read.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h2>Noble Bookstore</h2>
+
+            <p>
+                Your trusted source for quality literature
+                since 2024. We believe in the power of books
+                to inspire, educate, and entertain.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="{{ url_for('books') }}">
+                        Home
+                    </a>
+                </li>
+
+                {% if session.get('role') == 'admin' %}
+                <li>
+                    <a href="{{ url_for('add_book') }}">
+                        Add Book
+                    </a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="{{ url_for('cart') }}">
+                        Cart
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('login') }}">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h3>Connect With Us</h3>
+
+            <p>Email: support@noblebookstore.com</p>
+
+            <p>Phone: (806) 555-BOOK</p>
+
+            <p>Lubbock, Texas</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Noble Bookstore. All rights reserved.
+    </div>
+
+</footer>
 
 {% endblock %}
