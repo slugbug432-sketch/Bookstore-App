@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="cart-page">
+
+    <h1>🛒 Your Cart</h1>
+
+    {% if cart_items %}
+
+    <div class="cart-container">
+
+        {% for item in cart_items %}
+
+        <div class="cart-item">
+
+            <img src="{{ url_for('static', filename='images/' + item.book['image']) }}">
+
+            <div class="cart-info">
+
+                <h2>{{ item.book['title'] }}</h2>
+
+                <p>{{ item.book['author'] }}</p>
+
+                <div class="quantity-controls">
+
+                    <a href="{{ url_for('decrease_quantity', book_id=item.book['id']) }}"
+                       class="qty-btn">
+                        -
+                    </a>
+
+                    <span class="qty-number">
+                        {{ item.quantity }}
+                    </span>
+
+                    <a href="{{ url_for('increase_quantity', book_id=item.book['id']) }}"
+                       class="qty-btn">
+                        +
+                    </a>
+
+                </div>
+
+                <p class="cart-price">
+                    ${{ "%.2f"|format(item.subtotal) }}
+                </p>
+
+                <a href="{{ url_for('remove_from_cart', book_id=item.book['id']) }}"
+                   class="remove-btn">
+                    Remove Item
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <div class="cart-total">
+
+            <h2>
+                Total: ${{ "%.2f"|format(total) }}
+            </h2>
+
+            <button class="checkout-btn">
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-cart-box">
+    <p class="empty-cart">
+        Your cart is empty.
+    </p>
+
+    <a href="{{ url_for('books') }}" class="back-to-shop-btn">
+        ← Back to Collection
+    </a>
+</div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

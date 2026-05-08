@@ -38,7 +38,8 @@
                 {{ book['quantity'] }}
             </p>
 
-            <a href="#" class="detail-cart-btn">
+            <a href="{{ url_for('add_to_cart', book_id=book['id']) }}"
+               class="detail-cart-btn">
                 🛒 Add to Cart
             </a>
 

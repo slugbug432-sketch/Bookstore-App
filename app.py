@@ -118,6 +118,41 @@ def cart():
         cart_items=cart_items,
         total=total
     )
+@app.route("/increase_quantity/<int:book_id>")
+def increase_quantity(book_id):
+
+    cart = session.get("cart", {})
+
+    book_id = str(book_id)
+
+    if book_id in cart:
+        cart[book_id] += 1
+
+    session["cart"] = cart
+    session.modified = True
+
+    return redirect(url_for("cart"))
+
+
+@app.route("/decrease_quantity/<int:book_id>")
+def decrease_quantity(book_id):
+
+    cart = session.get("cart", {})
+
+    book_id = str(book_id)
+
+    if book_id in cart:
+
+        cart[book_id] -= 1
+
+        if cart[book_id] <= 0:
+            del cart[book_id]
+
+    session["cart"] = cart
+    session.modified = True
+
+    return redirect(url_for("cart"))
+
 
 
 @app.route("/remove_from_cart/<int:book_id>")
